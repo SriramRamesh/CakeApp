@@ -1,0 +1,127 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.android.cakeapp.OrderStatus"
+    android:background="#ff15ffef"
+    android:id="@+id/statusLayout">
+
+    <TextView
+        android:textAppearance="?android:attr/textAppearanceMedium"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:id="@+id/putName"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="46dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:textColor="#ff000000"
+        android:editable="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Order Status"
+        android:id="@+id/OrderTitle"
+        android:textColor="#ff000000"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:textAppearance="?android:attr/textAppearanceMedium"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/putPhone"
+        android:layout_below="@+id/putName"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="44dp"
+        android:layout_alignParentEnd="true"
+        android:textColor="#ff000000"
+        android:text="Phone" />
+
+    <TextView
+        android:textAppearance="?android:attr/textAppearanceMedium"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/putRoomNo"
+        android:layout_below="@+id/putPhone"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="40dp"
+        android:layout_alignEnd="@+id/putPhone"
+        android:text="Room No"
+        android:textColor="#ff000000" />
+
+    <TextView
+        android:textAppearance="?android:attr/textAppearanceMedium"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/putHostel"
+        android:layout_below="@+id/putRoomNo"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="48dp"
+        android:text="Hostel"
+        android:layout_alignEnd="@+id/putRoomNo"
+        android:textColor="#ff000000" />
+
+    <TextView
+        android:textAppearance="?android:attr/textAppearanceMedium"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/putWeight"
+        android:text="Weight"
+        android:textColor="#ff000000"
+        android:layout_below="@+id/putFlavour"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="42dp" />
+
+    <TextView
+        android:textAppearance="?android:attr/textAppearanceMedium"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/putPrice"
+        android:text="Price"
+        android:textColor="#ff000000"
+        android:layout_below="@+id/putWeight"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="40dp"
+        android:layout_alignEnd="@+id/putWeight" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Order"
+        android:id="@+id/OrderBtn"
+        android:onClick="OrderCake"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Flavour"
+        android:id="@+id/putFlavour"
+        android:layout_below="@+id/putHostel"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="54dp"
+        android:layout_alignEnd="@+id/putHostel"
+        android:textColor="#ff000000" />
+
+</RelativeLayout>

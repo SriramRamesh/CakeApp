@@ -1,0 +1,84 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:background="#ff000000"
+    android:id="@+id/layout">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="NITT Cake"
+        android:id="@+id/Title"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffffffff" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/BakeryName"
+        android:layout_marginTop="48dp"
+        android:popupBackground="#ffff4f36"
+        android:background="#ffff4f36"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/Title" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/CakeFlavour"
+        android:layout_marginTop="58dp"
+        android:popupBackground="#ff61ff30"
+        android:background="#ff61ff30"
+        android:layout_below="@+id/BakeryName"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Cost per Kg :"
+        android:id="@+id/Cost"
+        android:layout_below="@+id/CakeFlavour"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="44dp"
+        android:textColor="#ffffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text=" "
+        android:id="@+id/SetWeight"
+        android:layout_alignBottom="@+id/Cost"
+        android:layout_alignStart="@+id/Title"
+        android:layout_alignTop="@+id/Cost"
+        android:layout_alignParentEnd="true"
+        android:textColor="#ffffffff" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/WeightChoice"
+        android:layout_below="@+id/Cost"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="44dp"
+        android:background="#ff3affff"
+        android:popupBackground="#ff3affff" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Continue"
+        android:id="@+id/ContdToOrder"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="#fffffc41"
+        android:onClick="ContinueToOrder" />
+
+
+</RelativeLayout>
