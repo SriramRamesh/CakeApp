@@ -6,24 +6,30 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
-import org.apache.http.Header;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 
 public class OrderStatus extends Activity {
 
-    RequestParams params = new RequestParams();
+    static final String APP_SERVER_URL = "http://a0e28e79.ngrok.io/CakeAppServer/Register.php";
+
+    Map<String, String> params = new HashMap<String, String>();
     GoogleCloudMessaging gcmObj;
     Context applicationContext;
 
@@ -32,8 +38,7 @@ public class OrderStatus extends Activity {
     AsyncTask<Void, Void, String> createRegIdTask;
 
     public static final String REG_ID = "regId";
-    public static final String EMAIL_ID = "eMailId";
-    EditText emailET;
+
 
     String Name,Hostel;
     long RoomNo;
@@ -78,59 +83,23 @@ public class OrderStatus extends Activity {
         SharedPreferences prefs = getSharedPreferences("UserDetails",
                 Context.MODE_PRIVATE);
         String registrationId = prefs.getString(REG_ID, "");
+        if("".equals(Name)||"".equals(registrationId)){
+            Toast.makeText(getApplicationContext(),"No data",Toast.LENGTH_LONG).show();
+        }
+
         params.put("regId", registrationId);
         params.put("Name", Name);
         params.put("Phone", PhoneNo);
-        params.put("Room No", RoomNo);
+        params.put("Room No", RoomNo+"");
         params.put("Hostel", Hostel);
         params.put("Flavour",Flavour);
-        params.put("Weight",weight);
-        params.put("Price",price);
-        // Make RESTful webservice call using AsyncHttpClient object
-        AsyncHttpClient client = new AsyncHttpClient();
-        client.post(ApplicationConstants.APP_SERVER_URL, params,
-                new AsyncHttpResponseHandler() {
-                    // When the response returned by REST has Http
-                    // response code '200'
-                    @Override
-                    public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-
-                        Toast.makeText(applicationContext,
-                                "Sent Info ",
-                                Toast.LENGTH_LONG).show();
-
-
-                    }
-
-                    // When the response returned by REST has Http
-                    // response code other than '200' such as '404',
-                    // '500' or '403' etc
-
-                    @Override
-                    public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-
-                        // When Http response code is '404'
-                        if (statusCode == 404) {
-                            Toast.makeText(applicationContext,
-                                    "Requested resource not found",
-                                    Toast.LENGTH_LONG).show();
-                        }
-                        // When Http response code is '500'
-                        else if (statusCode == 500) {
-                            Toast.makeText(applicationContext,
-                                    "Something went wrong at server end",
-                                    Toast.LENGTH_LONG).show();
-                        }
-                        // When Http response code other than 404, 500
-                        else {
-                            Toast.makeText(
-                                    applicationContext,
-                                    "Unexpected Error occcured! [Most common Error: Device might "
-                                            + "not be connected to Internet or remote server is not up and running], check for other errors as well",
-                                    Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
+        params.put("Weight",weight+"");
+        params.put("Price", price + "");
+        try {
+            post(APP_SERVER_URL, params);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -153,4 +122,53 @@ public class OrderStatus extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+    private static void post(String endpoint, Map<String, String> params)
+            throws IOException {
+
+        URL url;
+        try {
+            url = new URL(endpoint);
+        } catch (MalformedURLException e) {
+            throw new IllegalArgumentException("invalid url: " + endpoint);
+        }
+        StringBuilder bodyBuilder = new StringBuilder();
+        Iterator<Map.Entry<String, String>> iterator = params.entrySet().iterator();
+        // constructs the POST body using the parameters
+        while (iterator.hasNext()) {
+            Map.Entry<String, String> param = iterator.next();
+            bodyBuilder.append(param.getKey()).append('=')
+                    .append(param.getValue());
+            if (iterator.hasNext()) {
+                bodyBuilder.append('&');
+            }
+        }
+        String body = bodyBuilder.toString();
+        Log.v("debug", "Posting '" + body + "' to " + url);
+        byte[] bytes = body.getBytes();
+        HttpURLConnection conn = null;
+        try {
+            Log.e("URL", "> " + url);
+            conn = (HttpURLConnection) url.openConnection();
+            conn.setDoOutput(true);
+            conn.setUseCaches(false);
+            conn.setFixedLengthStreamingMode(bytes.length);
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type",
+                    "application/x-www-form-urlencoded;charset=UTF-8");
+            // post the request
+            OutputStream out = conn.getOutputStream();
+            out.write(bytes);
+            out.close();
+            // handle the response
+            int status = conn.getResponseCode();
+            if (status != 200) {
+                throw new IOException("Post failed with error code " + status);
+            }
+        } finally {
+            if (conn != null) {
+                conn.disconnect();
+            }
+        }
+    }
+
 }
