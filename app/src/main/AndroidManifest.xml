@@ -12,10 +12,12 @@
     <!-- Permission to vibrate -->
     <uses-permission android:name="android.permission.VIBRATE" />
 
-
-    <permission android:name="com.example.gcm.permission.C2D_MESSAGE"
+    <permission
+        android:name="com.example.gcm.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
+
     <uses-permission android:name="com.example.gcm.permission.C2D_MESSAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -37,6 +39,14 @@
         <activity
             android:name=".GetDetails"
             android:label="@string/title_activity_get_details" >
+        </activity>
+        <activity
+            android:name=".Start"
+            android:label="@string/title_activity_start" >
+        </activity>
+        <activity
+            android:name=".CART.CartListActivity"
+            android:label="@string/title_activity_cart_list" >
         </activity>
     </application>
 

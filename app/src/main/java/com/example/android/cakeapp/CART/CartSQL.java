@@ -133,7 +133,7 @@ public class CartSQL extends SQLiteOpenHelper {
         cv.put(CakeWeight,gCakeWeigjht);
         cv.put(CakeTotalPrice,gTotalCakePrice);
         Log.d("debug","CakeName ="+gCakeName+"CakeWeight ="+gCakeWeigjht+"CakePricetot= "+gTotalCakePrice);
-        database.update(CartCakeTable, cv, null, null);
+        database.insert(CartCakeTable, null, cv);
         Log.d("Debug", "Added Cake to Cart List");
     }
     public void AddOntoCart(String gAddOnsName,int gQuantity,String gTotalAddOnsPrice ){
@@ -146,7 +146,7 @@ public class CartSQL extends SQLiteOpenHelper {
         cv.put(AddOnName,gAddOnsName);
         cv.put(AddOnsQuantity,gQuantity);
         cv.put(AddOnsTotalPrice,gTotalAddOnsPrice);
-        database.update(CartAddOnTable, cv, null, null);
+        database.insert(CartAddOnTable, null, cv);
         Log.d("Debug", "Added AddONs");
     }
 

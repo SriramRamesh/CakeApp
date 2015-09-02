@@ -72,7 +72,7 @@ public class MainActivity extends FragmentActivity {
         public Fragment getItem(int pos) {
             switch(pos) {
 
-                case 0: return FirstFragment.newInstance(getApplicationContext(),"ChocalateRambo","chocalaterambocake"," Price:400");
+                case 0: return FirstFragment.newInstance(getApplicationContext(),"Chocalate Rambo","chocalaterambocake"," Price:400");
                 case 1: return FirstFragment.newInstance(getApplicationContext(),"Vannilla","chocalaterambocake"," Price:350");
                 default: return FirstFragment.newInstance(getApplicationContext(),"Chocalate Rambo","chocalaterambocake"," Instance 1");
 
