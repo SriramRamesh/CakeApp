@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:background="#000000"
+    android:id="@+id/cakeViewLayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Chocalate Rambo"
+            android:id="@+id/cakeName"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#fffa1b"
+            android:textStyle="bold"
+            android:textSize="35sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+
+        <ImageView
+            android:layout_width="74dp"
+            android:layout_height="300dp"
+            android:id="@+id/CakePic"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.04"
+            android:background="@drawable/chocalaterambocake"
+            android:layout_below="@+id/cart"
+            android:layout_alignParentStart="true"
+            android:layout_alignEnd="@+id/cart" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cart"
+            android:src="@drawable/addtocart"
+            android:layout_gravity="center_horizontal"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Price: 700 per kg \n  It can go well with choco chips.................\n Desc"
+            android:id="@+id/CakeDesc"
+            android:textColor="#ffffff"
+            android:layout_above="@+id/textView8"
+            android:layout_alignEnd="@+id/WeightAdd" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Weight"
+            android:id="@+id/textView8"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:layout_above="@+id/WeightSub"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="1"
+            android:id="@+id/Weight"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            android:layout_alignBottom="@+id/WeightAdd"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:id="@+id/WeightAdd"
+            android:background="@drawable/roundbutton"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:textSize="35sp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            android:background="@drawable/roundbutton"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:id="@+id/WeightSub"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:layout_alignTop="@+id/WeightAdd"
+            android:layout_alignParentStart="true" />
+
+
+
+
+</RelativeLayout>
